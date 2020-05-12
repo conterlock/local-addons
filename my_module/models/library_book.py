@@ -8,6 +8,7 @@ class LibraryBook(models.Model):
     _order = 'date_release desc, name'
     _rec_name = 'short_name'
     name = fields.Char('Título', required=True)
+    short_name = fields.Char('Libreria', required=True)
     date_release = fields.Date('Fecha de Lanzamiento')
     author_ids = fields.Many2many('res.partner', string='Autores')
     publisher_id = fields.Many2one('res.partner', string='Publicación',

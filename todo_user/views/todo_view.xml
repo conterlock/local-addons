@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record id="view_form_todo_task_inherited" model="ir.ui.view">
+      <field name="name">Todo Task form – User extension</field>
+      <field name="model">todo.task</field>
+      <field name="inherit_id" ref="todo_app.view_form_todo_task"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="user_id" />
+        </field>
+        <field name="is_done" position="before">
+          <field name="date_deadline" />
+        </field>
+        <field name="name" position="attributes">
+          <attribute name="string">I have to…</attribute>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_tree_todo_task_inherited" model="ir.ui.view">
+      <field name="name">Todo Task tree – User extension</field>
+      <field name="model">todo.task</field>
+      <field name="inherit_id" ref="todo_app.view_tree_todo_task"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="user_id" />
+        </field>
+      </field>
+    </record>
+
+    <!-- Modify menu item -->
+    <record id="todo_app.menu_todo_task" model="ir.ui.menu">
+      <field name="name">My To-Do</field>
+    </record>
+    <!-- Action to open To-Do Task list -->
+    <record model="ir.actions.act_window" id="todo_app.action_todo_task">
+      <field name="context">
+        {'search_default_filter_my_tasks': True}
+      </field>
+    </record>
+
+  </data>
+</odoo>

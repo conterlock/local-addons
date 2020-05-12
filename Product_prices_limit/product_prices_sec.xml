@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="product_prices_security" model="ir.ui.view">
+    <field name="name">Extencion de seguridad para Precios de Productos</field>
+    <field name="model">todo.task</field>
+    <field name="inherit_id" ref="todo_app.view_form_todo_task"/>
+    <field name="arch" type="xml">
+        <!-- ...match and extend elements here! ... -->
+    </field>
+  </record>
+</odoo>

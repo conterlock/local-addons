@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <record id="group_library_user" model="res.groups">
+      <field name="name">User</field>
+      <field name="category_id" ref="base.module_category_library"/>
+      <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_library_manager" model="res.groups">
+      <field name="name">Manager</field>
+      <field name="category_id" ref="base.module_category_library"/>
+      <field name="implied_ids" eval="[(4, ref('group_library_user'))]"/>
+      <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+  </data>
+
+  <data noupdate="1">
+    <record model="ir.rule" id="library_book_user_rule">
+      <field name="name">Library: see only own books</field>
+      <field name="model_id" ref="model_library_book"/>
+      <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+      <field name="domain_force">
+        [('create_uid', '=', user.id)]
+      </field>
+    </record>
+    <record model="ir.rule" id="library_book_all_rule">
+      <field name="name">Library: see all books</field>
+      <field name="model_id" ref="model_library_book"/>
+      <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+      </record>
+    </data>
+</odoo>

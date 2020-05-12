@@ -1,8 +1,8 @@
 {
-    'name': 'Aplicacion To-Do',
-    'description': 'Manejador personal de Tareas',
+    'name': 'To-Do Application',
+    'description': 'Manage your personal Tasks with this module.',
     'author': 'Luis Millan',
-    'depends': ['base'],
-    'data': ['security/groups.xml', 'views/todo_view.xml', 'security/ir.model.access.csv'],
+    'depends': ['mail'],
+    'data': ['views/todo_view.xml', 'security/ir.model.access.csv', 'security/todo_access_rules.xml'],
     'application': True,
 }

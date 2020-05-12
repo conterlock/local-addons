@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-  <record id="grupo_todo" model="res.groups">
-  <field name="name">To-Do</field>
-  </record>
-</odoo>
