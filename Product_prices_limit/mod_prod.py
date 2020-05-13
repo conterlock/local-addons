@@ -16,5 +16,5 @@ class Productos_template(models.Model):
     #standard_price = fields.Float(groups="sales_team.group_sale_manager")   # Coste
 
 class Prices_product(models.Model):
-    _inherit ='product.pricelist.item'
-    product_prices_group = fields.Integer('ID grupo')
+    _inherit ='product.pricelist'
+    product_prices_group = fields.Integer('ID grupo', default=0)
