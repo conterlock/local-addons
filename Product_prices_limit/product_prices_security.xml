@@ -5,7 +5,7 @@
     <field name="model_id" ref="product.model_product_pricelist"/>
     <field name="groups" eval="[(4,    ref('base.group_user'))]"/>
     <field name="domain_force">
-      [('product_prices_group','in', [user.create_uid.id])]
+      ['|', ('group_id', '=', "__export__.res_groups_40_625f1a29"), ('group_id', '=', False)]
     </field>
   </record>
 </odoo>

@@ -1,5 +1,11 @@
-from odoo import models, fields
+#   Módulo para limitación de acceso a precios y tarifas en productos odoo
+#   Yarnabeth
+#   Autor: Luis Millan
+from odoo import models, fields, api
 
+################################################################################
+#   Para limitación de precios propios de los productos                        #
+################################################################################
 class Productos(models.Model):
     _inherit = 'product.product'
     #list_price = fields.Float(groups="group_sale_manager.group_user")       # Precio de Venta
@@ -15,6 +21,9 @@ class Productos_template(models.Model):
     #price = fields.Float(groups="group_sale_manager.group_user")            # Precio
     #standard_price = fields.Float(groups="sales_team.group_sale_manager")   # Coste
 
+################################################################################
+#   Para limitación de Tarifas por grupos asociados                            #
+################################################################################
 class Prices_product(models.Model):
     _inherit ='product.pricelist'
-    product_prices_group = fields.Integer('ID grupo', default=0)
+    group_id = fields.Char('ID grupo')      # ID externo de grupo asociado a la tarifa
