@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data noupdate="1">
+  <data>
     <record    id="product_price_rule" model="ir.rule">
       <field name="name">Limita la visibilidad de los registros de tarifas</field>
       <field name="model_id" ref="product.model_product_pricelist"/>
-      <field name="groups" eval="[(4,    ref('base.group_user'))]"/>
+      <field name="perm_write" eval="True"/>
+      <field name="perm_read" eval="True"/>
+      <field name="global" eval="True"/>
       <field name="domain_force">
-        ['|', ('group_id_sec', '=', 'no_group'), (user.has_group('sales_team.group_sale_manager'), '=', True)]
+        ['|', ('security_groups', '=', False), ('security_groups', 'in', [g.id for g in user.groups_id])]
       </field>
     </record>
   </data>
