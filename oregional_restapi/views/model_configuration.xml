@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- List view -->
+        <record id="model_configuration_list" model="ir.ui.view">
+            <field name="name">oregional.restapi.model.configuration.list</field>
+            <field name="model">oregional.restapi.model.configuration</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="model_display_name"/>
+                    <field name="model_name"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form view -->
+        <record id="model_configuration_form" model="ir.ui.view">
+            <field name="name">oregional.restapi.model.configuration.form</field>
+            <field name="model">oregional.restapi.model.configuration</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="id"
+                               invisible="1"
+                        />
+                        <field name="company"
+                               invisible="1"
+                        />
+                        <field name="is_base"
+                               invisible="1"
+                        />
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active"
+                                    type="object"
+                                    groups="base.group_user"
+                                    class="oe_stat_button"
+                                    icon="fa-archive"
+                            >
+                                <field name="active"
+                                       widget="boolean_button"
+                                       options='{"terminology": "archive"}'
+                                />
+                            </button>
+                        </div>
+                        <field name="image"
+                               widget="image"
+                               class="oe_avatar oe_left"
+                        />
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"
+                                       placeholder="Configuration name..."
+                                       attrs="{
+                                           'readonly': [('is_base', '=', True)],
+                                           'required': [('is_base', '=', False)],
+                                       }"
+                                />
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="model"
+                                   attrs="{
+                                       'readonly': [('is_base', '=', True)],
+                                       'required': [('is_base', '=', False)],
+                                   }"
+                            />
+                            <field name="model_name"
+                                   readonly="1"
+                            />
+                            <field name="model_display_name"/>
+                            <field name="filter"
+                                   attrs="{
+                                       'readonly': [('model', '=', False)]
+                                   }"
+                                   context="{'default_model_id': model_name}"
+                                   domain="[('model_id', '=', model_name)]"
+                            />
+                            <field name="description"/>
+                        </group>
+                         <notebook>
+                            <page name="fields"
+                                  string="Fields"
+                            >
+                                <group>
+                                    <field name="field_limit"
+                                           widget="radio"
+                                    />
+                                </group>
+                                <field name="field"
+                                       attrs="{
+                                           'invisible': [('field_limit', '=', 'none')],
+                                           'readonly': [('model', '=', False)]
+                                       }"
+                                       domain="[('model_id', '=', model)]"
+                                />
+                            </page>
+                            <page name="schemes"
+                                  string="Schemes"
+                            >
+                                <field name="scheme"
+                                       attrs="{
+                                           'readonly': [('model', '=', False)]
+                                       }"
+                                />
+                            </page>
+                            <page name="audit"
+                                  attrs="{'invisible': [('id', '=', False)]}"
+                                  string="Audit"
+                            >
+                                <group name="audit">
+                                    <field name="create_uid"
+                                           readonly="1"
+                                    />
+                                    <field name="create_date"
+                                           readonly="1"
+                                    />
+                                    <field name="write_uid"
+                                           readonly="1"
+                                    />
+                                    <field name="write_date"
+                                           readonly="1"
+                                    />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               widget="mail_followers"
+                        />
+                        <field name="message_ids"
+                               widget="mail_thread"
+                        />
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Search view -->
+        <record id="model_configuration_search" model="ir.ui.view">
+            <field name="name">oregional.restapi.model.configuration.search</field>
+            <field name="model">oregional.restapi.model.configuration</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="model_display_name"/>
+                    <field name="model_name"/>
+                    <field name="model"/>
+                    <field name="filter"/>
+                    <field name="description"/>
+                </search>
+            </field>
+        </record>
+        <!-- Window action -->
+        <record id="model_configuration_action" model="ir.actions.act_window">
+            <field name="help">REST API model configuration</field>
+            <field name="name">Model Configuration</field>
+            <field name="res_model">oregional.restapi.model.configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Window action list view -->
+        <record id="model_configuration_action_list" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="model_configuration_action"/>
+            <field name="sequence">10</field>
+            <field name="view_id" ref="model_configuration_list"/>
+            <field name="view_mode">tree</field>
+        </record>
+        <!-- Window action form view -->
+        <record id="model_configuration_action_form" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="model_configuration_action"/>
+            <field name="sequence">12</field>
+            <field name="view_id" ref="model_configuration_form"/>
+            <field name="view_mode">form</field>
+        </record>
+    </data>
+</odoo>

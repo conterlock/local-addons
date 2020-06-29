@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- List view -->
+        <record id="authorization_uri_list" model="ir.ui.view">
+            <field name="name">oregional.restapi.authorization.uri.list</field>
+            <field name="model">oregional.restapi.authorization.uri</field>
+            <field name="arch" type="xml">
+                <tree create="0" edit="0">
+                    <field name="application"/>
+                    <field name="authorization"/>
+                    <field name="uri"/>
+                </tree>
+            </field>
+        </record>
+        <!-- List view inline edit-->
+        <record id="authorization_uri_list_inline" model="ir.ui.view">
+            <field name="name">oregional.restapi.authorization.uri.list.inline</field>
+            <field name="model">oregional.restapi.authorization.uri</field>
+            <field name="arch" type="xml">
+                <tree create="0" edit="0">
+                    <field name="application"/>
+                    <field name="uri"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form view -->
+        <record id="authorization_uri_form" model="ir.ui.view">
+            <field name="name">oregional.restapi.authorization.uri.form</field>
+            <field name="model">oregional.restapi.authorization.uri</field>
+            <field name="arch" type="xml">
+                <form create="0" edit="0">
+                    <sheet>
+                        <field name="id"
+                               invisible="1"
+                        />
+                        <group>
+                            <field name="application"/>
+                            <field name="authorization"/>
+                            <field name="uri"/>
+                        </group>
+                         <notebook>
+                            <page name="audit"
+                                  attrs="{'invisible': [('id', '=', False)]}"
+                                  string="Audit"
+                            >
+                                <group name="audit">
+                                    <field name="create_uid"
+                                           readonly="1"
+                                    />
+                                    <field name="create_date"
+                                           readonly="1"
+                                    />
+                                    <field name="write_uid"
+                                           readonly="1"
+                                    />
+                                    <field name="write_date"
+                                           readonly="1"
+                                    />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Search view -->
+        <record id="authorization_uri_search" model="ir.ui.view">
+            <field name="name">oregional.restapi.authorization.uri.search</field>
+            <field name="model">oregional.restapi.authorization.uri</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="application"/>
+                    <field name="authorization"/>
+                    <field name="uri"/>
+                </search>
+            </field>
+        </record>
+        <!-- Window action -->
+        <record id="authorization_uri_action" model="ir.actions.act_window">
+            <field name="help">REST API Authorization URIs</field>
+            <field name="name">REST API Authorization URIs</field>
+            <field name="res_model">oregional.restapi.authorization.uri</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Window action list view -->
+        <record id="authorization_uri_action_list" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="authorization_uri_action"/>
+            <field name="sequence">10</field>
+            <field name="view_id" ref="authorization_uri_list"/>
+            <field name="view_mode">tree</field>
+        </record>
+        <!-- Window action form view -->
+        <record id="authorization_uri_action_form" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="authorization_uri_action"/>
+            <field name="sequence">12</field>
+            <field name="view_id" ref="authorization_uri_form"/>
+            <field name="view_mode">form</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* oregional_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-24 15:44+0000\n"
+"PO-Revision-Date: 2018-11-24 15:44+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: oregional_base
+#: model:ir.ui.menu,name:oregional_base.menu_app
+msgid "Apps"
+msgstr "Alkalmazások"
+
+#. module: oregional_base
+#: model:ir.model.fields,field_description:oregional_base.field_res_config_settings__is_installed_oregional_base
+msgid "Base Oregional App is installed"
+msgstr "Alap Oregional App telepítve"
+
+#. module: oregional_base
+#: model:ir.model,name:oregional_base.model_res_config_settings
+msgid "Config Settings"
+msgstr "Konfiguráció beállítások"
+
+#. module: oregional_base
+#: model_terms:ir.ui.view,arch_db:oregional_base.inherited_res_config_settings_view_form
+msgid "Members of the system administrator group can administer Oregional Odoo Apps"
+msgstr "A rendszeradminisztrátor csoport tagjai adminisztrálhatják az Oregional Odoo App-okat"
+
+#. module: oregional_base
+#: model:ir.ui.menu,name:oregional_base.menu_oregional_base
+#: model_terms:ir.ui.view,arch_db:oregional_base.inherited_res_config_settings_view_form
+msgid "Oregional"
+msgstr ""
+
+#. module: oregional_base
+#: model:res.groups,name:oregional_base.app_admin_group
+msgid "Oregional App Administrator"
+msgstr "Oregional App adminisztrátor"
+
+#. module: oregional_base
+#: model_terms:ir.actions.act_window,help:oregional_base.app_action
+msgid "Oregional Apps"
+msgstr "Oregional app-ok"
+
+#. module: oregional_base
+#: model_terms:ir.ui.view,arch_db:oregional_base.inherited_res_config_settings_view_form
+msgid "Oregional Base"
+msgstr ""
+
+#. module: oregional_base
+#: model:ir.actions.act_window,name:oregional_base.app_action
+msgid "Oregional Odoo Apps"
+msgstr "Oregional Odoo app-ok"
+
+#. module: oregional_base
+#: model:ir.actions.act_window,name:oregional_base.res_config_settings_action
+#: model:ir.ui.menu,name:oregional_base.menu_setting
+msgid "Settings"
+msgstr "Beállítások"
+
+#. module: oregional_base
+#: model:ir.model.fields,field_description:oregional_base.field_res_config_settings__group_oregional_app_admin
+msgid "System admins are app admins"
+msgstr "A rendszeradminisztrátorok app adminisztrátorok"
+

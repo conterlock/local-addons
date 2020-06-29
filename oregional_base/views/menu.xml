@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Settings > Oregional -->
+        <record id="menu_oregional_base" model="ir.ui.menu">
+            <field name="name">Oregional</field>
+            <field name="parent_id" ref="base.menu_administration"/>
+            <field name="sequence">1024</field>
+        </record>
+        <!-- Settings > Oregional > Apps -->
+        <record id="menu_app" model="ir.ui.menu">
+            <field name="action" ref="app_action"/>
+            <field name="name">Apps</field>
+            <field name="parent_id" ref="menu_oregional_base"/>
+            <field name="sequence">16</field>
+        </record>
+        <!-- Settings > Oregional > Settings -->
+        <record id="menu_setting" model="ir.ui.menu">
+            <field name="action" ref="res_config_settings_action"/>
+            <field name="name">Settings</field>
+            <field name="parent_id" ref="menu_oregional_base"/>
+            <field name="sequence">32</field>
+        </record>
+    </data>
+</odoo>

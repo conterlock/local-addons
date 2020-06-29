@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- List view -->
+        <record id="model_scheme_list" model="ir.ui.view">
+            <field name="name">oregional.restapi.model.scheme.list</field>
+            <field name="model">oregional.restapi.model.scheme</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form view -->
+        <record id="model_scheme_form" model="ir.ui.view">
+            <field name="name">oregional.restapi.model.scheme.form</field>
+            <field name="model">oregional.restapi.model.scheme</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="id"
+                               invisible="1"
+                        />
+                        <field name="company"
+                               invisible="1"
+                        />
+                        <field name="is_base"
+                               invisible="1"
+                        />
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_list_application"
+                                    attrs="{'invisible': [
+                                        ('id', '=', False),
+                                    ]}"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    string="Application"
+                                    type="object"
+                            />
+                            <button name="toggle_active"
+                                    type="object"
+                                    groups="base.group_user"
+                                    class="oe_stat_button"
+                                    icon="fa-archive"
+                            >
+                                <field name="active"
+                                       widget="boolean_button"
+                                       options='{"terminology": "archive"}'
+                                />
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"
+                                       placeholder="Name..."
+                                       attrs="{
+                                           'readonly': [('is_base', '=', True)],
+                                           'required': [('is_base', '=', False)],
+                                       }"
+                                />
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                         <notebook>
+                            <page name="models"
+                                  string="Models"
+                            >
+                                <group>
+                                    <field name="model_limit"
+                                           widget="radio"
+                                    />
+                                </group>
+                                <field name="model_whitelist"
+                                       attrs="{'invisible': [('model_limit', '!=', 'whitelist')]}"
+                                />
+                                <field name="model_blacklist"
+                                       attrs="{'invisible': [('model_limit', '!=', 'blacklist')]}"
+                                />
+                            </page>
+                            <page name="audit"
+                                  attrs="{'invisible': [('id', '=', False)]}"
+                                  string="Audit"
+                            >
+                                <group name="audit">
+                                    <field name="create_uid"
+                                           readonly="1"
+                                    />
+                                    <field name="create_date"
+                                           readonly="1"
+                                    />
+                                    <field name="write_uid"
+                                           readonly="1"
+                                    />
+                                    <field name="write_date"
+                                           readonly="1"
+                                    />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               widget="mail_followers"
+                        />
+                        <field name="message_ids"
+                               widget="mail_thread"
+                        />
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Search view -->
+        <record id="model_scheme_search" model="ir.ui.view">
+            <field name="name">oregional.restapi.model.scheme.search</field>
+            <field name="model">oregional.restapi.model.scheme</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="description"/>
+                </search>
+            </field>
+        </record>
+        <!-- Window action -->
+        <record id="model_scheme_action" model="ir.actions.act_window">
+            <field name="help">Model schemes</field>
+            <field name="name">Model Scheme</field>
+            <field name="res_model">oregional.restapi.model.scheme</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Window action list view -->
+        <record id="model_scheme_action_list" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="model_scheme_action"/>
+            <field name="sequence">10</field>
+            <field name="view_id" ref="model_scheme_list"/>
+            <field name="view_mode">tree</field>
+        </record>
+        <!-- Window action form view -->
+        <record id="model_scheme_action_form" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="model_scheme_action"/>
+            <field name="sequence">12</field>
+            <field name="view_id" ref="model_scheme_form"/>
+            <field name="view_mode">form</field>
+        </record>
+    </data>
+</odoo>

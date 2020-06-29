@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- List view -->
+        <record id="application_uri_list" model="ir.ui.view">
+            <field name="name">oregional.restapi.application.uri.list</field>
+            <field name="model">oregional.restapi.application.uri</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="application"/>
+                    <field name="uri"/>
+                    <field name="authorize_individually"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <!-- List view inline edit-->
+        <record id="application_uri_list_inline_edit" model="ir.ui.view">
+            <field name="name">oregional.restapi.application.uri.list.inline.edit</field>
+            <field name="model">oregional.restapi.application.uri</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="uri"/>
+                    <field name="authorize_individually"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form view -->
+        <record id="application_uri_form" model="ir.ui.view">
+            <field name="name">oregional.restapi.application.uri.form</field>
+            <field name="model">oregional.restapi.application.uri</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="id"
+                               invisible="1"
+                        />
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active"
+                                    type="object"
+                                    groups="base.group_user"
+                                    class="oe_stat_button"
+                                    icon="fa-archive"
+                            >
+                                <field name="active"
+                                       widget="boolean_button"
+                                       options='{"terminology": "archive"}'
+                                />
+                            </button>
+                        </div>
+                        <group>
+                            <field name="application"/>
+                            <field name="uri"/>
+                            <field name="authorize_individually"/>
+                            <field name="description"/>
+                        </group>
+                         <notebook>
+                            <page name="audit"
+                                  attrs="{'invisible': [('id', '=', False)]}"
+                                  string="Audit"
+                            >
+                                <group name="audit">
+                                    <field name="create_uid"
+                                           readonly="1"
+                                    />
+                                    <field name="create_date"
+                                           readonly="1"
+                                    />
+                                    <field name="write_uid"
+                                           readonly="1"
+                                    />
+                                    <field name="write_date"
+                                           readonly="1"
+                                    />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               widget="mail_followers"
+                        />
+                        <field name="message_ids"
+                               widget="mail_thread"
+                        />
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Search view -->
+        <record id="application_uri_search" model="ir.ui.view">
+            <field name="name">oregional.restapi.application.uri.search</field>
+            <field name="model">oregional.restapi.application.uri</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="application"/>
+                    <field name="uri"/>
+                    <field name="authorize_individually"/>
+                    <field name="description"/>
+                </search>
+            </field>
+        </record>
+        <!-- Window action -->
+        <record id="application_uri_action" model="ir.actions.act_window">
+            <field name="help">REST API Application URIs</field>
+            <field name="name">REST API Application URIs</field>
+            <field name="res_model">oregional.restapi.application.uri</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Window action list view -->
+        <record id="application_uri_action_list" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="application_uri_action"/>
+            <field name="sequence">10</field>
+            <field name="view_id" ref="application_uri_list"/>
+            <field name="view_mode">tree</field>
+        </record>
+        <!-- Window action form view -->
+        <record id="application_uri_action_form" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="application_uri_action"/>
+            <field name="sequence">12</field>
+            <field name="view_id" ref="application_uri_form"/>
+            <field name="view_mode">form</field>
+        </record>
+    </data>
+</odoo>

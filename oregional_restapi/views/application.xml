@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- List view -->
+        <record id="application_list" model="ir.ui.view">
+            <field name="name">oregional.restapi.application.list</field>
+            <field name="model">oregional.restapi.application</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="client_id"/>
+                    <field name="odoo_id"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form view -->
+        <record id="application_form" model="ir.ui.view">
+            <field name="name">oregional.restapi.application.form</field>
+            <field name="model">oregional.restapi.application</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="id"
+                               invisible="1"
+                        />
+                        <field name="company"
+                               invisible="1"
+                        />
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active"
+                                    type="object"
+                                    groups="base.group_user"
+                                    class="oe_stat_button"
+                                    icon="fa-archive"
+                            >
+                                <field name="active"
+                                       widget="boolean_button"
+                                       options='{"terminology": "archive"}'
+                                />
+                            </button>
+                        </div>
+                        <field name="image"
+                               widget="image"
+                               class="oe_avatar oe_left"
+                        />
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"
+                                       placeholder="Name..."
+                                       required="1"
+                                />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="client_id"/>
+                                <label for="generate_client_id"
+                                       class="oe_edit_only"
+                                       string=""
+                                />
+                                <div name="generate_client_id"
+                                     attrs="{'invisible': [
+                                         ('active','=', False),
+                                     ]}"
+                                     class="oe_edit_only"
+                                >
+                                    <button name="action_generate_client_id"
+                                            class="btn btn-primary btn-sm"
+                                            icon="fa-bolt"
+                                            groups="base.group_system"
+                                            string="Generate"
+                                            type="object"
+                                    />
+                                </div>
+                                <field name="client_secret"/>
+                                <label for="generate_client_secret"
+                                       class="oe_edit_only"
+                                       string=""
+                                />
+                                <div name="generate_client_secret"
+                                     attrs="{'invisible': [
+                                         ('active','=', False),
+                                     ]}"
+                                     class="oe_edit_only"
+                                >
+                                    <button name="action_generate_client_secret"
+                                            class="btn btn-primary btn-sm"
+                                            icon="fa-bolt"
+                                            groups="base.group_system"
+                                            string="Generate"
+                                            type="object"
+                                    />
+                                </div>
+                            </group>
+                            <group>
+                                <field name="odoo_id"/>
+                                <label for="generate_odoo_id"
+                                       class="oe_edit_only"
+                                       string=""
+                                />
+                                <div name="generate_odoo_id"
+                                     attrs="{'invisible': [
+                                         ('active','=', False),
+                                     ]}"
+                                     class="oe_edit_only"
+                                >
+                                    <button name="action_generate_odoo_id"
+                                            class="btn btn-primary btn-sm"
+                                            icon="fa-bolt"
+                                            groups="base.group_system"
+                                            string="Generate"
+                                            type="object"
+                                    />
+                                </div>
+                                <field name="odoo_secret"/>
+                                <label for="generate_odoo_secret"
+                                       class="oe_edit_only"
+                                       string=""
+                                />
+                                <div name="generate_odoo_secret"
+                                     attrs="{'invisible': [
+                                         ('active','=', False),
+                                     ]}"
+                                     class="oe_edit_only"
+                                     groups="base.group_system"
+                                >
+                                    <button name="action_generate_odoo_secret"
+                                            class="btn btn-primary btn-sm"
+                                            icon="fa-bolt"
+                                            type="object"
+                                            string="Generate"
+                                    />
+                                </div>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="model_scheme"/>
+                            <field name="description"/>
+                        </group>
+                         <notebook>
+                            <page name="uri"
+                                  string="URIs"
+                            >
+                                <field name="uri"
+                                       context="{'tree_view_ref': 'oregional_restapi.application_uri_list_inline_edit'}"
+                                />
+                            </page>
+                            <page name="settings"
+                                  string="Settings"
+                            >
+                                <group name="oauth2"
+                                       string="OAuth 2.0"
+                                >
+                                    <field name="authorization_code_expiry"/>
+                                    <field name="authorization_code_retain"/>
+                                    <field name="access_token_expiry"/>
+                                    <field name="refresh_token_expiry"/>
+                                </group>
+                            </page>
+                            <page name="audit"
+                                  attrs="{'invisible': [('id', '=', False)]}"
+                                  string="Audit"
+                            >
+                                <group name="audit">
+                                    <field name="create_uid"
+                                           readonly="1"
+                                    />
+                                    <field name="create_date"
+                                           readonly="1"
+                                    />
+                                    <field name="write_uid"
+                                           readonly="1"
+                                    />
+                                    <field name="write_date"
+                                           readonly="1"
+                                    />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               widget="mail_followers"
+                        />
+                        <field name="message_ids"
+                               widget="mail_thread"
+                        />
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Search view -->
+        <record id="application_search" model="ir.ui.view">
+            <field name="name">oregional.restapi.application.search</field>
+            <field name="model">oregional.restapi.application</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="description"/>
+                </search>
+            </field>
+        </record>
+        <!-- Window action -->
+        <record id="application_action" model="ir.actions.act_window">
+            <field name="help">REST API applications</field>
+            <field name="name">REST API application</field>
+            <field name="res_model">oregional.restapi.application</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Window action list view -->
+        <record id="application_action_tree" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="application_action"/>
+            <field name="sequence">10</field>
+            <field name="view_id" ref="application_list"/>
+            <field name="view_mode">tree</field>
+        </record>
+        <!-- Window action form view -->
+        <record id="application_action_form" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="application_action"/>
+            <field name="sequence">12</field>
+            <field name="view_id" ref="application_form"/>
+            <field name="view_mode">form</field>
+        </record>
+    </data>
+</odoo>

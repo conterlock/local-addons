@@ -1,0 +1,231 @@
+<div class="container" style="color:#58585A;">
+    <div name="header"
+         class="row"
+         style="margin-top:32px;"
+    >
+        <div class="col-8 offset-2 align-self-center col-xs-8 col-xs-offset-2">
+            <div class="jumbotron text-center" style="background-color:#58585A;color:#FFFFFF">
+                <h2 class="display-4" style="color:#FFFFFF">
+                    Oregional REST API
+                </h2>
+                <p class="lead">
+                    REST API for common and specific resources
+                </p>
+            </div>
+        </div>
+    </div>
+    <hr class="my-4">
+    <div name="intro"
+         class="row"
+    >
+        <div class="col-12 align-self-center col-xs-12">
+            <div class="text-center">
+                <h2 class="display-4">
+                    About the app
+                    <p class="lead">
+                        General information
+                    </p>
+                </h2>
+            </div>
+        </div>
+        <div class="col-8 offset-2 col-xs-8 col-xs-offset-2">
+            <div>
+                <div class="alert alert-info" style="text-align:center;">
+                    Please do read the <a href="https://confluence.oregional.hu/display/OOA/Oregional+REST+API" class="alert-link">documentation!</a>
+                </div>
+                <div class="alert alert-warning" style="text-align:center;">
+                    Currently this is not a full-fledged REST API.
+                    The main purpose of this implementation is to enable communication with <a href="https://www.atlassian.com/software/confluence" class="alert-link">Atlassian Confluence</a>.
+                    Still, the provided authentication and endpoint features make it useful for any other application.
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <i class="fa fa-check" style="color:#98AD67;"/> Register and configure trusted applications
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa fa-check" style="color:#98AD67;"/> Use model configurations to decide which fields of a model are made available for a given external application (you can set different name and icon for each model too!)
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa fa-check" style="color:#98AD67;"/> Organize model configurations into model schemes, and link the model scheme to one or more external application
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa fa-check" style="color:#98AD67;"/> OAuth 2.0 authorization flow (authorization code, access token, refresh token, Basic and Bearer authentication)
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa fa-check" style="color:#98AD67;"/> Record name_search with offset, order and limit
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa fa-check" style="color:#98AD67;"/> Read operation for one or many records
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa fa-check" style="color:#98AD67;"/> Model field query
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa fa-check" style="color:#98AD67;"/> Multiple endpoints for common and specific resources, please check the <a href="https://confluence.oregional.hu/display/OOA/Oregional+REST+API" class="alert-link">documentation</a> for the current list of provided endpoints
+                    </li>
+                    <li class="list-group-item" style="background-color:#98AD67;color:#FFFFFF;">
+                        <i class="fa fa-check"/> Demo, documentation, support
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr class="my-4">
+    <div name="user"
+         class="row"
+    >
+        <div class="col-12 text-center col-xs-12">
+            <h2 class="display-4">
+                Usage
+                <p class="lead">
+                    Information for users
+                </p>
+            </h2>
+        </div>
+        <div class="col-8 col-xs-8">
+            <img class="oe_picture oe_screenshot"
+                 src="oregional_restapi_sample_application.png"
+                 alt="oregional_restapi_sample_application"
+            >
+        </div>
+        <div class="col-4 col-xs-4">
+            <h4>
+                Applications
+            </h4>
+            <ul>
+                <li>
+                    Client ID and secret
+                </li>
+                <li>
+                    Own ID and secret
+                </li>
+                <li>
+                    Use model scheme
+                </li>
+                <li>
+                    URIs
+                </li>
+                <li>
+                    Settings for authorization, access token and refresh token expiry
+                </li>
+            </ul>
+        </div>
+        <div class="col-8 col-xs-8">
+            <img class="oe_picture oe_screenshot"
+                 src="oregional_restapi_sample_authorization.png"
+                 alt="oregional_restapi_sample_authorization"
+            >
+        </div>
+        <div class="col-4 col-xs-4">
+            <h4>
+                Authorizations
+            </h4>
+            <ul>
+                <li>
+                    Administrators can list and revoke user authorizations
+                </li>
+                <li>
+                    Users can list and revoke their own authorizations
+                </li>
+            </ul>
+        </div>
+        <div class="col-8 col-xs-8">
+            <img class="oe_picture oe_screenshot"
+                 src="oregional_restapi_sample_model_configuration.png"
+                 alt="oregional_restapi_sample_model_configuration"
+            >
+        </div>
+        <div class="col-4 col-xs-4">
+            <h4>
+                Model configurations
+            </h4>
+            <ul>
+                <li>
+                   Control which fields are made available for external applications
+                </li>
+                <li>
+                   Control under what name should the model be presented for external applications
+                </li>
+                <li>
+                   Add a custom icon for each model to allow visual model presentation for external applications
+                </li>
+                <li>
+                    Easy, quick, reusable settings
+                </li>
+            </ul>
+        </div>
+        <div class="col-8 col-xs-8">
+            <img class="oe_picture oe_screenshot"
+                 src="oregional_restapi_sample_model_scheme.png"
+                 alt="oregional_restapi_sample_model_scheme"
+            >
+        </div>
+        <div class="col-4 col-xs-4">
+            <h4>
+                Model schemes
+            </h4>
+            <ul>
+                <li>
+                    Organize model configurations into model schemes
+                </li>
+                <li>
+                   Link model schemes to applications
+                </li>
+                <li>
+                    Easy, quick, reusable settings
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr class="my-4">
+    <div name="sysadmin"
+         class="row"
+    >
+        <div class="col-12 text-center col-xs-12">
+            <h2 class="display-4">
+                SysAdmin
+                <p class="lead">
+                    Information for operating system and Odoo administrators
+                </p>
+            </h2>
+        </div>
+        <div class="col-8 offset-2 col-xs-8 col-xs-offset-2">
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <i class="fa fa-check" style="color:#98AD67;"/> No additional operating system requirement
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa fa-check" style="color:#98AD67;"/> No additional Python package requirement
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa fa-check" style="color:#98AD67;"/> 3rd party Odoo app dependency only to other Oregional Odoo App</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr class="my-4">
+    <div name="about_us"
+         class="row"
+    >
+        <div class="col-8 offset-2 col-xs-8 col-xs-offset-2">
+            <div class="jumbotron text-center" style="background-color:#58585A;color:#FFFFFF;">
+                <h2 class="display-4" style="color:#FFFFFF;">
+                    <i class="fa fa-info-circle"/> About Oregional
+                </h2>
+                <p class="lead">
+                   We provide softwares & services for SMEs, NGOs and private entrepreneurs
+                </p>
+                <br/>
+                <p>
+                    <a class="btn btn-primary btn-lg" href="https://oregional.hu/" role="button">Visit Us</a>
+                </p>
+                <br/>
+                <small>
+                    Demo, documentation, support and additional information is available at our website
+                </small>
+            </div>
+        </div>
+    </div>
+</div>

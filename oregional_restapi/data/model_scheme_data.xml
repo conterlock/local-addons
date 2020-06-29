@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Default model scheme -->
+        <record id="default_model_scheme"
+                model="oregional.restapi.model.scheme"
+        >
+            <field name="description">Default model scheme whitelising res.partner model</field>
+            <field name="is_base">True</field>
+            <field name="name">Default model scheme</field>
+            <field name="model_limit">whitelist</field>
+        </record>
+    </data>
+</odoo>

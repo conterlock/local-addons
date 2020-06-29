@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Inherited form view -->
+        <record id="inherited_users_form" model="ir.ui.view">
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="model">res.users</field>
+            <field name="name">oregional.restapi.inherited.users.form</field>
+            <field name="priority">128</field>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='access_rights']" position="after">
+                    <page name="oregional_restapi_authorizations"
+                          string="REST API Authorizations"
+                    >
+                        <field name="oregional_restapi_authorization"
+                               context="{'tree_view_ref': 'oregional_restapi.authorization_list_user'}"
+                        />
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <!-- Inherited form view -->
+        <record id="inherited_view_users_form_simple_modif" model="ir.ui.view">
+            <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+            <field name="model">res.users</field>
+            <field name="name">oregional.restapi.inherited.view.users.form.simple.modif</field>
+            <field name="priority">128</field>
+            <field name="arch" type="xml">
+                <xpath expr="//group[last()]" position="after">
+                    <group name="oregional_restapi_authorizations">
+                        <field name="id"
+                               invisible="1"
+                        />
+                        <field name="oregional_restapi_authorization"
+                               context="{'tree_view_ref': 'oregional_restapi.authorization_list_user'}"
+                               domain="[('user', '=', id)]"
+                               string="REST API authorizations"
+                        />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+	</data>
+</odoo>

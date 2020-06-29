@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Default partner model configuration -->
+        <record id="default_partner_model_configuration"
+                model="oregional.restapi.model.configuration"
+        >
+            <field name="description">Default model configuration for res.partner model</field>
+            <field name="field_limit">none</field>
+            <field name="is_base">True</field>
+            <field name="name">Default partner model configuration</field>
+            <field name="model" eval="ref('base.model_res_partner')"/>
+            <field name="scheme" eval="[(4, ref('oregional_restapi.default_model_scheme'))]"/>
+        </record>
+    </data>
+</odoo>

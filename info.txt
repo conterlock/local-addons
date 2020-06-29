@@ -1,6 +1,7 @@
 Para iniciar de cero:
 Base de Datos: sudo docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db postgres:10
 Odoo: sudo docker run -v /home/lmillan/Odoo/local-addons:/mnt/extra-addons -p 8069:8069 --name odoo --link db:db -t odoo
+      sudo docker run -p 8070:8069 --name odoo2 --link db2:db -t odoo
 
 Para detener contenedores: sudo docker stop odoo/db
 
