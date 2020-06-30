@@ -6,35 +6,22 @@ class Sale_order_copy(models.Model):
     is_copy = fields.Boolean('Copiado?', default=False)
 
     def do_copy_sale_order(self):
-        common = xmlrpc.client.ServerProxy('http://172.17.0.1:8070/xmlrpc/2/common')
-        uid = common.authenticate('OdooDB', 'lmillan131@gmail.com', '1123581321', {})
-        models = xmlrpc.client.ServerProxy('http://172.17.0.1:8070/xmlrpc/2/object')
-        #id = models.execute_kw('OdooDB', uid, '1123581321', 'res.partner', 'create', [{'name': self.name,}])
-        id = models.execute_kw('OdooDB', uid, '1123581321', 'sale.order', 'search_read', [[[1, '=', True]]], {'fields': ['name', 'company_id', 'currency_id', 'date_order', 'partner_id', 'partner_invoice_id', 'partner_shipping_id', 'picking_policy', 'pricelist_id', 'warehouse_id'], 'limit': 3})
-        ser = models.execute_kw('OdooDB', uid, '1123581321', 'sale.order', 'fields_get',
-            [], {'attributes': ['name', 'currency_id', 'date_order', 'partner_id', 'partner_invoice_id', 'pricelist_id']})
-        id2 = models.execute_kw('OdooDB', uid, '1123581321', 'sale.order', 'create',
-            [{'name': 'TO001',
-              'currency_id': [4],
-              'date_order': '2020-06-27 00:31:45',
-              'partner_id': [14],
-              'partner_invoice_id': [14],
-              'partner_shipping_id': [14],
-              'pricelist_id': [1]}])
+        ###################################################
+        # Parámetros de Conexión entre Instancias de Odoo #
+        ###################################################
+        if self.is_copy == False:
+            common = xmlrpc.client.ServerProxy('http://172.17.0.1:8070/xmlrpc/2/common')    # Conexión
+            uid = common.authenticate('OdooDB', 'lmillan131@gmail.com', '1123581321', {})   # Autenticación
+            models = xmlrpc.client.ServerProxy('http://172.17.0.1:8070/xmlrpc/2/object')    # Modelo para la conexión
 
-        id3 = models.execute_kw('OdooDB', uid, '1123581321', 'sale.order', 'create', [{'partner_id': 1, 'pricelist_id':1}])
-
-
-        #sale_copy = models.execute_kw('OdooDB', uid, '1123581321', 'sale.order', 'create', [{
-        #    'name': self.name,
-        #    'company_id': self.company_id
-        #    'currency_id': self.currency_id
-        #    'date_order': self.date_order
-        #    'partner_id': self.partner_id
-        #    'partner_invoice_id': self.partner_invoice_id
-        #    'partner_shipping_id': self.partner_shipping_id
-        #    'picking_policy': self.picking_policy
-        #    'pricelist_id': self.pricelist_id
-        #    'warehouse_id': self.warehouse_id
-        #    }])
-        self.is_copy = True
+            ###################################################
+            # Generación de nuevos registros necesarios       #
+            ###################################################
+            order = models.execute_kw('OdooDB', uid, '1123581321', 'sale.order', 'create',  # Nuevo Pedido de Venta
+                [{'partner_id': 1, 'pricelist_id':1,}])
+            for f in self.env['sale.order.line'].search([('order_id', '=', self.name)]):
+                producto = self.env['product.product'].search([('product_variant_id', '=', f.product_id)])
+                clave = producto.default_code
+                order_line_copy = models.execute_kw('OdooDB', uid, '1123581321',            # Nueva Linea de Pedido
+                'sale.order.line', 'create', [{'order_id': order, 'product_id': 1, 'product_uom_qty': 1}])
+            self.is_copy = True
