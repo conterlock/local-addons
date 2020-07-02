@@ -19,9 +19,13 @@ class Sale_order_copy(models.Model):
             ###################################################
             order = models.execute_kw('OdooDB', uid, '1123581321', 'sale.order', 'create',  # Nuevo Pedido de Venta
                 [{'partner_id': 1, 'pricelist_id':1,}])
+                
             for f in self.env['sale.order.line'].search([('order_id', '=', self.name)]):
-                producto = self.env['product.product'].search([('product_variant_id', '=', f.product_id)])
-                clave = producto.default_code
-                order_line_copy = models.execute_kw('OdooDB', uid, '1123581321',            # Nueva Linea de Pedido
-                'sale.order.line', 'create', [{'order_id': order, 'product_id': 1, 'product_uom_qty': 1}])
+                id_prod = models.execute_kw(
+                    'OdooDB', uid, '1123581321', 'product.product', 'search_read',
+                    [[['default_code', '=', f.product_id.default_code]]],
+                    {'fields': ['default_code'], 'limit': 1})
+                order_line_copy = models.execute_kw(
+                    'OdooDB', uid, '1123581321', 'sale.order.line', 'create',
+                    [{'order_id': order, 'product_id': id_prod[0]['id'],'product_uom_qty': f.product_uom_qty}])
             self.is_copy = True
