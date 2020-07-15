@@ -1,0 +1,5 @@
+key,value
+db.odoo11,OdooDB
+password.odoo11,1123581321
+url.odoo11,http://172.17.0.1:8070/
+user.odoo11,lmillan131@gmail.com

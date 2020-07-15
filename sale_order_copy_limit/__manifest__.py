@@ -3,6 +3,6 @@
     'description': "Copia ordenes de pedido entre versiones de Odoo",
     'author': "Luis Millan",
     'depends': ['sale'],
-    'data': ['views/sale_order_copy_view.xml'],
+    'data': ['views/sale_order_copy_view.xml', 'security/ir.config_parameter.csv'],
     'application': True,
 }
